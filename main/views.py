@@ -50,7 +50,7 @@ class HumanListView(ListAPIView):
     queryset = models.Human.objects.all()
     serializer_class = serializers.HumanListSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = ['information', 'house']
+    filterset_fields = ['status', 'information', 'house']
     search_fields = ['fullname']
     pagination_class  = MyPagination
 

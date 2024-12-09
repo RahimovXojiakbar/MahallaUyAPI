@@ -18,6 +18,7 @@ models.Chairman.objects.all().delete()
 models.MFY.objects.all().delete()
 models.Neighborhood.objects.all().delete()
 models.House.objects.all().delete()
+models.Human.objects.all().delete()
 
 
 fake = Faker()
