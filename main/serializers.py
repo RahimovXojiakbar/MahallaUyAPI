@@ -1,26 +1,72 @@
 from rest_framework.serializers import ModelSerializer, SlugRelatedField
 from .import models 
 
+class ChairmanListSerializer(ModelSerializer):
+    class Meta:
+        model = models.Chairman
+        fields = ['id','name']
 
-class NegihborhoodSerializers(ModelSerializer):
+
+class MFYListSerializer(ModelSerializer):
+    class Meta:
+        model = models.MFY
+        fields = ['id','title']
+
+
+class NeighborhoodListSerializer(ModelSerializer):
     class Meta:
         model = models.Neighborhood
-        fields = ['id' ,'title']
+        fields = ['id','title']
 
-class HouseSerializers(ModelSerializer):
-    neighborhood = SlugRelatedField(slug_field = 'title', read_only = True)
+
+class HouseListSerializer(ModelSerializer):
     class Meta:
         model = models.House
-        fields = ['house_number', 'neighborhood']
+        fields = ['id','house_number', 'a_b']
 
-class NegihborhoodDetailSerializers(ModelSerializer):
+
+class HumanListSerializer(ModelSerializer):
+    class Meta:
+        model = models.Human
+        fields = ['id','fullname']
+
+
+
+# ------------------------------------------------------------------------------------------
+
+
+
+class ChairmanDetailSerializer(ModelSerializer):
+    class Meta:
+        model = models.Chairman
+        fields = '__all__'
+
+
+class MFYDetailSerializer(ModelSerializer):
+    chairman = SlugRelatedField(slug_field = 'name', read_only=True)
+    class Meta:
+        model = models.MFY
+        fields = '__all__'
+
+
+class NeighborhoodDetailSerializer(ModelSerializer):
+    MFY = SlugRelatedField(slug_field = 'title', read_only=True)
     class Meta:
         model = models.Neighborhood
         fields = '__all__'
 
 
 class HouseDetailSerializer(ModelSerializer):
-    neighborhood = SlugRelatedField(slug_field = 'title', read_only = True)
+    neighborhood = SlugRelatedField(slug_field = 'title', read_only=True)
     class Meta:
         model = models.House
         fields = '__all__'
+
+
+class HumanDetailSerializer(ModelSerializer):
+    house = SlugRelatedField(slug_field = 'house_number', read_only=True)
+    class Meta:
+        model = models.Human
+        fields = '__all__'
+
+
